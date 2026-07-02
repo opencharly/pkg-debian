@@ -1,0 +1,23 @@
+Source: opencharly
+Section: admin
+Priority: optional
+Maintainer: Andreas Trawoeger <atrawog@opencharly.ai>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://github.com/opencharly/charly
+
+Package: opencharly
+Architecture: amd64
+Depends: ${misc:Depends},
+ podman, gocryptfs, fuse3, fuse-overlayfs, slirp4netns,
+ openssh-client, openssh-server, util-linux, skopeo,
+ qemu-system-x86, qemu-utils, virtiofsd,
+ libvirt-daemon-system, libvirt-clients,
+ libarchive-tools, iproute2, xorriso, genisoimage, ovmf,
+ dnsmasq-base, swtpm, gnupg, pinentry-curses
+Suggests: docker.io, cloudflared, gvisor-tap-vsock, nvidia-driver, kubectl
+Description: OpenCharly container management CLI
+ Compose, build, deploy, and manage container boxes from a library of fully
+ configurable candies. Ships the charly binary; apt auto-resolves its mandatory
+ dependencies. Tailscale is NOT a dependency here (it is not in Debian main) —
+ the charly candy supplies tailscale for Debian/Ubuntu via the tailscale apt repo.

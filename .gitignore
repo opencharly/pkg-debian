@@ -1,0 +1,15 @@
+# The charly binary is bind-mounted in at build time (never committed here).
+/charly
+# dpkg-buildpackage artifacts (the build runs in a copy under /tmp, but ignore
+# these defensively in case of a local in-tree build).
+/debian/opencharly/
+/debian/files
+/debian/.debhelper/
+/debian/*.substvars
+/debian/debhelper-build-stamp
+*.deb
+*.buildinfo
+*.changes
+
+# Syncthing conflict copies — per-machine, ephemeral, resolved by hand; never versioned.
+*.sync-conflict-*

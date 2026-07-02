@@ -1,0 +1,7 @@
+opencharly (2026.156.2150) trixie; urgency=medium
+
+  * Native Debian/Ubuntu package for the charly CLI. The version above is a
+    placeholder — the build.yml deb build_template rewrites it to the bundled
+    binary's CalVer at build time, so each build is upgradeable.
+
+ -- Andreas Trawoeger <atrawog@opencharly.ai>  Sat, 06 Jun 2026 03:00:00 +0000

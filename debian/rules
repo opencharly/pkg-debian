@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+# The packaged charly binary AND the welded command plugins are prebuilt (copied into
+# the source tree as ./charly + ./plugins/ by the build.yml deb build_template) and
+# installed via debian/opencharly.install (charly → /usr/bin, plugins → /usr/lib/charly/
+# plugins so `charly doctor`/`clean`/`vm`/… resolve project-less). There is no compile
+# step, no shared-lib scan, and no strip/dwz on the Go binaries.
+%:
+	dh $@
+
+override_dh_auto_build:
+override_dh_auto_test:
+override_dh_strip:
+override_dh_dwz:
+override_dh_shlibdeps:
+
+# dh_fixperms resets regular files under /usr/lib to 0644; re-assert the exec bit on the
+# welded command-plugin binaries (their `.providers` word manifests stay 0644) so the
+# loader can syscall.Exec them.
+override_dh_fixperms:
+	dh_fixperms
+	find debian/opencharly/usr/lib/charly/plugins -type f ! -name '*.providers' -exec chmod 0755 {} +
